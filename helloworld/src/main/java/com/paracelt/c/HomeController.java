@@ -11,11 +11,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.paracelt.services.PlayerServicesIml;
+import com.paracelt.services.PlayerSevices;
+import com.paraclt.entities.Player;
+
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class HomeController {
+	private PlayerSevices playerservices;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -32,8 +37,11 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
+		model.addAttribute("player",new Player());
+		model.addAttribute("listPlayer",this.playerservices.listPlayer());
 		
 		return "home";
 	}
+	
 	
 }
